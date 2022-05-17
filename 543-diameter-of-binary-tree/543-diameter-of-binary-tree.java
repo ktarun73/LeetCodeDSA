@@ -18,11 +18,10 @@ class Solution {
         if(root==null){
             return 0;
         }
-        int diameter1=height(root.left)+height(root.right);
-        int diameter2=diameterOfBinaryTree(root.left);
-        int diameter3=diameterOfBinaryTree(root.right);
-        return Math.max(diameter1 , Math.max(diameter2,diameter3));
-        
+        int diam1=height(root.left)+height(root.right);
+        int diam2=diameterOfBinaryTree(root.left);
+        int diam3=diameterOfBinaryTree(root.right);
+        return Math.max(diam1,Math.max(diam2,diam3));
     }
     
     public int height(TreeNode root){
