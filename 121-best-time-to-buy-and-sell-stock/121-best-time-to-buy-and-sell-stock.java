@@ -3,18 +3,17 @@ class Solution {
         int n=prices.length;
         int maxPrices[]=new int[n];
         int maxPrice=prices[n-1];
-        maxPrices[n-1]=maxPrice;
-        for(int i=n-2;i>=0;i--){
-            if(prices[i]>maxPrice){
+        for(int i=n-1;i>=0;i--){
+            if(maxPrice<prices[i]){
                 maxPrice=prices[i];
             }
             maxPrices[i]=maxPrice;
         }
         
-         int maxProfit=0;
+        int maxProfit=0;
         for(int i=0;i<n;i++){
             int temp=maxPrices[i]-prices[i];
-            if(maxProfit<temp){
+            if(temp>maxProfit){
                 maxProfit=temp;
             }
         }
