@@ -5,11 +5,18 @@ class Solution {
             if(ch=='(' || ch=='{' || ch=='['){
                 s.push(ch);
             }
-            else if(s.isEmpty()) return false;
-            else if(!s.isEmpty() && ch==')' && s.pop()!= '(') return false;
-            else if(!s.isEmpty() && ch=='}' && s.pop()!= '{') return false;
-            else if(!s.isEmpty() && ch==']' && s.pop()!= '[') return false;
-            
+            else if(s.isEmpty()){
+                return false;
+            }
+            else if(!s.isEmpty() && ch==')' && s.pop()!='('){
+                return false;
+            }
+            else if(!s.isEmpty() && ch=='}' && s.pop()!='{'){
+                return false;
+            }
+            else if(!s.isEmpty() && ch==']' && s.pop()!='['){
+                return false;
+            }
         }
         return s.isEmpty();
     }
