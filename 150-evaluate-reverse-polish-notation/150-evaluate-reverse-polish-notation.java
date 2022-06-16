@@ -1,38 +1,30 @@
 class Solution {
     public int evalRPN(String[] tokens) {
-        Stack<Integer> stack=new Stack<>();
+        Stack<Integer> s=new Stack<>();
+        
         for(int i=0;i<tokens.length;i++){
-            if(!isOperator(tokens[i])){
-                stack.push(Integer.parseInt(tokens[i]));
+            if(!isOperater(tokens[i])){
+                s.push(Integer.parseInt(tokens[i]));
             }
             else{
-                int num1=stack.pop();
-                int num2=stack.pop();
-                operation(stack , num1 , num2 , tokens[i]);
+                int x=s.pop();
+                int y=s.pop();
+                s.push(operation(tokens[i],x,y));
             }
             
         }
-        return stack.pop();
-        }
-        public boolean isOperator(String s){
-            return s.equals("+") || s.equals("-") || s.equals("*") || s.equals("/");
-        }
-        
-        public void operation(Stack<Integer> stack, int num1, int num2, String s){
-            if(s.equals("+")){
-                 stack.push(num1+num2);
-            }
-            else if(s.equals("-")){
-             stack.push(num2-num1);
-            }
-            else if(s.equals("*")){
-             stack.push(num1*num2);
-            }
-            else if(s.equals("/")){
-             stack.push(num2/num1);
-            }
-            
-            
-        }
+        return s.peek();
+    }
     
+    public int operation(String s,int x,int y){
+        if(s.equals("+")) return x+y;
+        else if(s.equals("-")) return y-x;
+        else if(s.equals("*")) return x*y;
+        else if(s.equals("/")) return y/x;
+        return 0;
+    }
+    
+    public boolean isOperater(String s){
+        return s.equals("+") || s.equals("-") || s.equals("*") || s.equals("/");
+    }
 }
