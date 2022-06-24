@@ -74,25 +74,23 @@ class Node
 
 class GfG{
   /*You are required to complete this method */
-  public static long g=1000000007;
+  long g=1000000007;
    public long multiplyTwoLists(Node l1,Node l2){
           //add code here.
+          
           long num1=num(l1);
           long num2=num(l2);
           return (num1*num2)%g;
    }
    
-  public long num(Node head){
-      if(head==null){
-          return 0;
-      }
-      
-      long num=head.data;
-      Node cur=head.next;
-      while(cur!=null){
-          num=((num*10)+cur.data)%g;
-          cur=cur.next;
-      }
-      return num;
-  }  
+   public long num(Node head){
+       if(head==null) return 1;
+       long x=head.data;
+       Node cur=head.next;
+       while(cur!=null){
+           x=(x*10+cur.data)%g;
+           cur=cur.next;
+       }
+       return x;
+   }
 }
