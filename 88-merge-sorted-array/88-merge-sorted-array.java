@@ -5,6 +5,19 @@ class Solution {
             nums1[i]=nums2[j];
             j++;
         }
-        Arrays.sort(nums1);
+        bubbleSort(nums1);
+    }
+    
+    public void bubbleSort(int[] ar){
+        int n=ar.length;
+        for(int i=0;i<n;i++){
+            for(int j=1;j<n-i;j++){
+                if(ar[j]<ar[j-1]){
+                    int temp=ar[j];
+                    ar[j]=ar[j-1];
+                    ar[j-1]=temp;
+                }
+            }
+        }
     }
 }
