@@ -12,18 +12,17 @@ class Solution {
     public ListNode deleteDuplicates(ListNode head) {
         if(head==null || head.next==null) return head;
         
-        ListNode cur=head;
-        ListNode next=head.next;
-        while(cur!=null && cur.next!=null){
-            if(cur.val==next.val){
-                next=next.next;
-                cur.next=next;
+        ListNode prev=head , cur=head.next;
+        while(cur!=null){
+            if(prev.val==cur.val){
+                cur=cur.next;
+                prev.next=cur;
             }
             else{
                 cur=cur.next;
+                prev=prev.next;
             }
         }
-        
         return head;
     }
 }
