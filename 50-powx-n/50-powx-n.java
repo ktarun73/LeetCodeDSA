@@ -1,21 +1,20 @@
 class Solution {
     public double myPow(double x, int n) {
-        double ans=1.0;
-        long nm=n;
-        if(nm<0) nm*=-1;
-        while(nm>0){
-            if(nm%2==1){
-                ans=ans*x;
-                nm-=1;
+        if(n==0) return 1;
+        double mn=n;
+        double ans=1;
+        if(n<0) mn*=-1;
+        while(mn>0){
+            if(mn%2==0){
+                x*=x;
+                mn/=2;
             }
             else{
-                
-                x=x*x;
-                nm/=2;
+                ans*=x;
+                mn--;
             }
         }
-        
-        if(n<0) return (double)(1)/(double)(ans);
+        if(n<0) return (double)1/(double)ans;
         return ans;
     }
 }
