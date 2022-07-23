@@ -10,50 +10,37 @@
  */
 class Solution {
     public boolean isPalindrome(ListNode head) {
-        if(head==null){
-            return true;
-        }
-        
-        ListNode mid=middle(head);
-        ListNode rev=revList(mid);
-        
-        ListNode cur=head;
+        if(head==null || head.next==null) return true;
+        ListNode mid=mid(head);
+        ListNode rev=rev(mid);
         while(rev!=null){
-            if(rev.val!=cur.val){
-                return false;
-            }
-            cur=cur.next;
+            if(head.val!=rev.val) return false;
+            head=head.next;
             rev=rev.next;
         }
         return true;
-        
     }
     
-     public ListNode revList(ListNode head) {
-        if(head==null || head.next==null){
-            return head;
+    ListNode mid(ListNode head){
+        ListNode slow=head, fast=head;
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
         }
-        ListNode prevNode=head;
-        ListNode curNode=head.next;
-        while(curNode!=null){
-            ListNode nextNode=curNode.next;
-            curNode.next=prevNode;
-            prevNode=curNode;
-            curNode=nextNode;
+        return slow;
+    }
+    
+   ListNode rev(ListNode head){
+        if(head==null || head.next==null) return head;
+        ListNode prev=head, cur=head.next;
+        while(cur!=null){
+            ListNode next=cur.next;
+            cur.next=prev;
+            prev=cur;
+            cur=next;
         }
         head.next=null;
-        head=prevNode;
-        return head;
-    }
-    
-    public ListNode middle(ListNode head){
-        ListNode a_pointer=head;
-        ListNode b_pointer=head;
-        while(b_pointer!=null && b_pointer.next!=null){
-            a_pointer=a_pointer.next;
-            b_pointer=b_pointer.next.next;
-        }
-        return a_pointer;
-        
+        head=prev;
+       return head;
     }
 }
