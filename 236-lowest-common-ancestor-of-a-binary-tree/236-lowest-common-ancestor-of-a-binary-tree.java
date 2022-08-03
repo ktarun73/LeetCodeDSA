@@ -9,22 +9,28 @@
  */
 class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        //base case
-        if (root == null || root == p || root == q) {
-            return root;
+        List<TreeNode> path_to_p= new ArrayList<>();
+        List<TreeNode> path_to_q= new ArrayList<>();
+        getPath(root,p,path_to_p);
+        getPath(root,q,path_to_q);
+        int n=path_to_q.size()>path_to_p.size()?path_to_p.size():path_to_q.size();
+        TreeNode anscesstor=root;
+        for(int i=0;i<n;i++){
+            if(path_to_q.get(i)==path_to_p.get(i)) anscesstor=path_to_p.get(i);
         }
-        TreeNode left = lowestCommonAncestor(root.left, p, q);
-        TreeNode right = lowestCommonAncestor(root.right, p, q);
-
-        //result
-        if(left == null) {
-            return right;
+        return anscesstor;
+        
+        
+    }
+    
+    boolean getPath(TreeNode root, TreeNode target,List<TreeNode> list){
+        if(root==null) return false;
+        list.add(root);
+        if(root==target) return true;
+        if(getPath(root.left,target,list) || getPath(root.right,target,list)){
+            return true;
         }
-        else if(right == null) {
-            return left;
-        }
-        else { //both left and right are not null, we found our result
-            return root;
-        }
+        list.remove(list.size()-1);
+        return false;
     }
 }
