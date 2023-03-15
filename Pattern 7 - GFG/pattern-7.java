@@ -24,7 +24,7 @@ class Solution {
         // code here
         for(int i=0;i<n;i++){
             int spaces=n-i-1;
-            for(int j=1;j<=spaces;j++){
+            for(int j=0;j<spaces;j++){
                 System.out.print(" ");
             }
             for(int j=0;j<2*i+1;j++){
